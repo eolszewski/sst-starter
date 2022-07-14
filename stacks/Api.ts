@@ -6,14 +6,14 @@ import {
 import { Database } from "./Database";
 
 export function Api({ stack }: StackContext) {
-  const db = use(Database);
+  const { bucket, table, notes } = use(Database);
 
   const api = new ApiGateway(stack, "api", {
     defaults: {
       function: {
-        permissions: [db],
+        permissions: [bucket, table, notes],
         environment: {
-          TABLE_NAME: db.tableName,
+          TABLE_NAME: table.tableName,
         },
       },
     },
