@@ -18,6 +18,7 @@ export function Api({ stack }: StackContext) {
         },
       },
     },
+    cors: true,
     routes: {
       "POST /notes": "functions/create.main",
       "GET /notes/{id}": "functions/get.main",
