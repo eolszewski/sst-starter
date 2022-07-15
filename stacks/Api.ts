@@ -10,6 +10,7 @@ export function Api({ stack }: StackContext) {
 
   const api = new ApiGateway(stack, "api", {
     defaults: {
+      authorizer: "iam",
       function: {
         permissions: [bucket, table, notes],
         environment: {
