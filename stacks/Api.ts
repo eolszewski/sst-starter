@@ -13,11 +13,16 @@ export function Api({ stack }: StackContext) {
       function: {
         permissions: [bucket, table, notes],
         environment: {
-          TABLE_NAME: table.tableName,
+          TABLE_NAME: notes.tableName,
         },
       },
     },
     routes: {
+      "POST /notes": "functions/create.main",
+      "GET /notes/{id}": "functions/get.main",
+      "GET /notes": "functions/list.main",
+      "PUT /notes/{id}": "functions/update.main",
+      "DELETE /notes/{id}": "functions/delete.main",
       "POST /graphql": {
         type: "pothos",
         function: {
@@ -36,5 +41,7 @@ export function Api({ stack }: StackContext) {
     API_URL: api.url,
   });
 
-  return api;
+  return {
+    api,
+  };
 }
